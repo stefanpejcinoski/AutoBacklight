@@ -7,8 +7,10 @@ The aim of the program is to keep the backlight as low as possible while maintai
 # DISCLAIMER
 
 The project is still in it's very early stages, this is literally the first working version.
-There is no automated installation, it only works on Linux and only on distributions that
-have the GNOME desktop enviroment, since it relies on gnome DBus calls to change brightness.
+There is no automated installation, it's untested on Windows and works on Linux but only on 
+distributions that have the GNOME desktop enviroment, since it relies on gnome DBus calls 
+to change brightness.
+
 Currently it is envisioned to work only on laptops with LCD panels since those have a backlight 
 and keeping it as low as possible will increase battery life. 
 Support for OLED panels might be something that will be considered in the future, although since
