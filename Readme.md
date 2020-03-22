@@ -10,8 +10,8 @@ curve of the script, right now it's linear (y=ax+b) where y is backlight level x
 
 The project is still in it's very early stages, this is literally the first working version.
 There is no automated installation, it's untested on Windows and works on Linux but only on 
-distributions that have the GNOME desktop enviroment, since it relies on gnome DBus calls 
-to change brightness.
+distributions that have the GNOME desktop enviroment, since it relies on GNOME DBus calls 
+to read and set the backlight level.
 
 Currently it is envisioned to work only on laptops with LCD panels since those have a backlight 
 and keeping it as low as possible will increase battery life. 
