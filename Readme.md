@@ -1,10 +1,10 @@
-# Auto Brightness
+## Auto Brightness
 
 Auto Brightness is a Python script for automatic adjustment of the LCD screen backlight intensity of a laptop, 
 using the webcam as a light level sensor. 
 The aim of the program is to keep the backlight as low as possible while maintaining good legibility.
 
-# DISCLAIMER
+## DISCLAIMER
 
 The project is still in it's very early stages, this is literally the first working version.
 There is no automated installation, it's untested on Windows and works on Linux but only on 
@@ -18,6 +18,8 @@ they don't have a backlight, no power will be saved by keeping it low.
 
 
 ## Installation
+
+# Linux
 
 Clone the repository on your system 
 
@@ -38,6 +40,10 @@ Add this line to the end of your cron file, replace path-to-script with the path
  ```
 * */2 * * * * /usr/bin/python /path-to-script/autoBacklight.py
 ```
+# Windows
+
+Use the Windows task scheduler to create an automated task every 1/2/3...whatever minutes to run the python interpreter with this script as an argument. The task scheduler has a graphical user interface so no commands
+will be provided
 
 ## Usage
 
