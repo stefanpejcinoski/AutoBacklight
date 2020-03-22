@@ -9,24 +9,15 @@ Created on Sun Mar 22 01:24:01 2020
 import cv2
 import os
 import sys
-#from subprocess import check_output, CalledProcessError, STDOUT
 import numpy as np
 
-"""
-def getstatusoutput(cmd):
-    try:
-        data = check_output(cmd, shell=True, universal_newlines=True, stderr=STDOUT)
-        status = 0
-    except CalledProcessError as ex:
-        data = ex.output
-        status = ex.returncode
-    if data[-1:] == '\n':
-        data = data[:-1]
-    return status, data
-"""
-def change_brightness(value):
+
+def change_brightness_linux(value):
     os.system('gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness "<int32 ' + str(value) + '>"')
-        
+  
+def change_brightness_windows(value):
+    os.system('powershell (Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,'+value+')')
+    
 
 def main():  
     
@@ -38,7 +29,11 @@ def main():
     ret, frame=camera.read()
     camera.release()
     avg=np.average(frame)
-    change_brightness(np.uint32(np.round(avg/10)))
+    value=np.uint32(np.round(avg))
+    if(os.name=='posix'):
+        change_brightness_linux(value)
+    elif(os.name=='nt'):
+        change_brightness_windows(value)
     
 
 if __name__=='__main__':
