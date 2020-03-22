@@ -2,7 +2,9 @@
 
 AutoBacklight is a Python script for automatic adjustment of the LCD screen backlight intensity of a laptop, 
 using the webcam as a light level sensor. 
-The aim of the program is to keep the backlight as low as possible while maintaining good legibility.
+The aim of the program is to keep the backlight as low as possible while maintaining user comfort.
+Since what is considered comfortable to use is user dependant, there will be a method to adjust the response
+curve of the script, right now it's linear (y=ax+b) where y is backlight level x is camera light level, a is 1/2.5 and b can be adjusted by editing the script.
 
 # DISCLAIMER
 
