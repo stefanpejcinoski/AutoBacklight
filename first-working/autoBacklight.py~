@@ -33,7 +33,7 @@ def main():
     if(os.name=='posix'):
         change_brightness_linux(value)
     elif(os.name=='nt'):
-        change_brightness_windows(2*value)
+        change_brightness_windows(value)
     
 
 if __name__=='__main__':
