@@ -11,6 +11,7 @@ import os
 import sys
 import numpy as np
 
+b=0
 
 def change_brightness_linux(value):
     os.system('gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness "<int32 ' + str(value) + '>"')
@@ -29,7 +30,7 @@ def main():
     ret, frame=camera.read()
     camera.release()
     avg=np.average(frame)
-    value=np.uint32(np.round(avg/2.5))
+    value=np.uint32(np.round(avg/2.5-b))
     if(os.name=='posix'):
         change_brightness_linux(value)
     elif(os.name=='nt'):

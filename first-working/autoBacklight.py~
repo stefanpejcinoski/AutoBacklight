@@ -29,11 +29,11 @@ def main():
     ret, frame=camera.read()
     camera.release()
     avg=np.average(frame)
-    value=np.uint32(np.round(avg/10))
+    value=np.uint32(np.round(avg/2.5))
     if(os.name=='posix'):
         change_brightness_linux(value)
     elif(os.name=='nt'):
-        change_brightness_windows(2*value)
+        change_brightness_windows(value)
     
 
 if __name__=='__main__':
