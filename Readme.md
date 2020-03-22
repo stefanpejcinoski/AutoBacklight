@@ -26,10 +26,10 @@ export VISUAL=nano
 crontab -e
 ```
 
-Your cronfile should contain this line
+Add this line to the end of your cron file, replace path-to-script with the path to the autoBacklight folder
  
  ```
-* */2 * * * * /usr/bin/python /path-to-script/autoBrightness.py
+* */2 * * * * /usr/bin/python /path-to-script/autoBacklight.py
 ```
 
 ## Usage
