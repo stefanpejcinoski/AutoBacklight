@@ -1,13 +1,18 @@
 # Auto Brightness
 
-Auto Brightness is a Python script for automatic adjustment of the backlight intensity of a laptop, 
-using the webcam as a light level sensor.
+Auto Brightness is a Python script for automatic adjustment of the LCD screen backlight intensity of a laptop, 
+using the webcam as a light level sensor. 
+The aim of the program is to keep the backlight as low as possible while maintaining good legibility.
 
 # DISCLAIMER
 
 The project is still in it's very early stages, this is literally the first working version.
 There is no automated installation, it only works on Linux and only on distributions that
-have the GNOME desktop enviroment, since it relies on gnome DBus calls to change brightness
+have the GNOME desktop enviroment, since it relies on gnome DBus calls to change brightness.
+Currently it is envisioned to work only on laptops with LCD panels since those have a backlight 
+and keeping it as low as possible will increase battery life. 
+Support for OLED panels might be something that will be considered in the future, although since
+they don't have a backlight, no power will be saved by keeping it low.
 
 
 ## Installation
