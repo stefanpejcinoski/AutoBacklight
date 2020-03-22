@@ -1,6 +1,6 @@
-# Auto Brightness
+# Auto Backlight
 
-Auto Brightness is a Python script for automatic adjustment of the LCD screen backlight intensity of a laptop, 
+AutoBacklight is a Python script for automatic adjustment of the LCD screen backlight intensity of a laptop, 
 using the webcam as a light level sensor. 
 The aim of the program is to keep the backlight as low as possible while maintaining good legibility.
 
@@ -44,7 +44,7 @@ export VISUAL=nano
 crontab -e
 ```
 
-Add this line to the end of your cron file, replace path-to-script with the path to the autoBacklight folder
+Add this line to the end of your cron file, replace path-to-script with the path to the autoBacklight script
  
  ```
 * */2 * * * * /usr/bin/python /path-to-script/autoBacklight.py
@@ -56,7 +56,7 @@ Use the Windows task scheduler to create an automated task every 1/2/3...whateve
 # Usage
 
 There is no user intervention needed for this script, it runs in the backround with the interval
-that you set in the cron file
+that you set in the cron file or task scheduler
 
 # Contributing
 Feel free to modify and improve on the code as much as you wish.
