@@ -19,6 +19,13 @@ they don't have a backlight, no power will be saved by keeping it low.
 
 # Installation
 
+The script uses OpenCV to capture images from the webcam and Numpy to process the data, so you need to have them installed 
+
+```bash
+pip install python-opencv
+pip install numpy
+```
+
 ## Linux
 
 Clone the repository on your system 
