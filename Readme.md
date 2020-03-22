@@ -21,6 +21,8 @@ they don't have a backlight, no power will be saved by keeping it low.
 
 The script uses OpenCV to capture images from the webcam and Numpy to process the data, so you need to have them installed 
 
+Run the following commands in Terminal/Command Line
+
 ```bash
 pip install python-opencv
 pip install numpy
@@ -49,8 +51,7 @@ Add this line to the end of your cron file, replace path-to-script with the path
 ```
 ## Windows
 
-Use the Windows task scheduler to create an automated task every 1/2/3...whatever minutes to run the python interpreter with this script as an argument. The task scheduler has a graphical user interface so no commands
-will be provided
+Use the Windows task scheduler to create an automated task every 1/2/3...whatever minutes to run the python interpreter with this script as an argument. I currently do not have a machine with Windows to install and test the script on to, but you can find instructions on how to use the task scheduler online.
 
 # Usage
 
