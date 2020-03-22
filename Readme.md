@@ -49,7 +49,7 @@ crontab -e
 Add this line to the end of your cron file, replace path-to-script with the path to the autoBacklight script
  
  ```
-* */2 * * * * /usr/bin/python /path-to-script/autoBacklight.py
+*/2 * * * * /usr/bin/python /path-to-script/autoBacklight.py
 ```
 ## Windows
 
