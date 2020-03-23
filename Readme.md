@@ -10,7 +10,7 @@ The script will automatically detect if an external monitor is connected or if t
 # DISCLAIMER
 
 The project is still in it's very early stages,
-there is no automated installation. It's untested on Windows and works on Linux but only on 
+there is no automated installation, no user configurable parameters and no GUI. It's untested on Windows and works on Linux but only on 
 distributions that have the GNOME desktop enviroment, since it relies on GNOME DBus calls 
 to read and set the backlight level. 
 
