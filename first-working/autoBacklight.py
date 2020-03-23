@@ -38,7 +38,7 @@ def change_brightness_windows(value):
 
 def main():  
     
-    if(os.path.isfile('/home/stefan/.autoBacklight/stop')):
+    if(os.path.isfile(os.path.join(os.getcwd(), "stop"))):
         sys.exit()
     camera=cv2.VideoCapture(0)
     if(camera.open(0)==False):
