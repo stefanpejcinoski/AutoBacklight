@@ -66,6 +66,8 @@ crontab -e
 
 Add this line to the end of your cron file, replace path-to-script with the path to the autoBacklight script
 
+To exit nano, save the file with Ctrl+O and exit with Ctrl+X. To exit without saving use Ctrl+X and press N when asked to save;
+
 
  
 ```
@@ -79,6 +81,29 @@ Make an installation directory (anywhere is fine) and copy the script located in
 Use the Windows task scheduler to create an automated task with a frequency that you choose (I recommend 2 minutes),  to run the python interpreter with this script as an argument. I currently do not have a machine with Windows to install and test the script on to, but you can find instructions on how to use the task scheduler online.
 
 The script is untested on Windows, it may run fine or it may not run at all. For now it lacks external monitor and sleep detection.
+
+# Unistallation
+##Linux
+
+Remove the cron job you created
+```bash
+export VISUAL=nano
+crontab -e
+```
+
+Find and remove the line you added during installation and save the file with Ctrl+O, and exit with Ctrl+X (if you chose to use nano)
+
+Delete the install directory that you created
+```bash
+rm -r ~/.AutoBacklight
+```
+replace ~/ with your install path, if you chose differently 
+
+##Windows
+
+Remove the task you added to the Task Scheduler 
+
+Delete the install directory that you created
 
 # Usage
 
