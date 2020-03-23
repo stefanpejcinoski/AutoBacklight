@@ -5,13 +5,14 @@ using the webcam as a light level sensor.
 The aim of the program is to keep the backlight as low as possible while maintaining user comfort.
 Since what is considered comfortable to use is user dependant, there will be a method to adjust the response
 curve of the script, right now it's linear (y=ax+b) where y is backlight level x is camera light level, a is 1/2.5 and b can be adjusted by editing the script.
+The script is intended to run only when there are no external monitors attached and the computer is not locked (This feature currently only runs on Linux). 
 
 # DISCLAIMER
 
 The project is still in it's very early stages, this is literally the first working version.
 There is no automated installation, it's untested on Windows and works on Linux but only on 
 distributions that have the GNOME desktop enviroment, since it relies on GNOME DBus calls 
-to read and set the backlight level.
+to read and set the backlight level. 
 
 Currently it is envisioned to work only on laptops with LCD panels since those have a backlight 
 and keeping it as low as possible will increase battery life. 

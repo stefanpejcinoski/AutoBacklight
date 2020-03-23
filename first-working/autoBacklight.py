@@ -35,11 +35,21 @@ def change_brightness_linux(value):
 def change_brightness_windows(value):
     os.system('powershell (Get-WmiObject -Namespace root/WMI -Class WmiMonitorBrightnessMethods).WmiSetBrightness(1,'+value+')')
     
-
+def check_prerequisites_linux():
+    if("On" not in os.popen("xset -q | grep Monitor | cut -d ' ' -f5").read()):
+             return False
+    if("disconnected" not in os.popen("xrandr --query | grep HDMI-1").read()):
+             return False
+    return True
 def main():  
     
     if(os.path.isfile(os.path.join(os.getcwd(), "stop"))):
         sys.exit()
+
+    if(os.name=='posix'):
+        if(check_prerequisites_linux==False):
+            sys.exit()
+        
     camera=cv2.VideoCapture(0)
     if(camera.open(0)==False):
         sys.exit()
