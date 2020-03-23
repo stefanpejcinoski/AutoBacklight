@@ -55,7 +55,7 @@ Add this line to the end of your cron file, replace path-to-script with the path
 ```
 ## Windows
 
-Use the Windows task scheduler to create an automated task every 1/2/3...whatever minutes to run the python interpreter with this script as an argument. I currently do not have a machine with Windows to install and test the script on to, but you can find instructions on how to use the task scheduler online.
+Use the Windows task scheduler to create an automated task with a frequency that you choose (i recommend 2 minutes),  to run the python interpreter with this script as an argument. I currently do not have a machine with Windows to install and test the script on to, but you can find instructions on how to use the task scheduler online.
 
 # Usage
 
@@ -63,4 +63,6 @@ There is no user intervention needed for this script, it runs in the backround w
 that you set in the cron file or task scheduler
 If you wish to stop the script from running temporarily, create a file called stop (no extension) in the same directory as the script.
 # Contributing
+
+Pull requests are welcome.
 Feel free to modify and improve on the code as much as you wish.
