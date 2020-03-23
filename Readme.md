@@ -5,8 +5,7 @@ using the webcam as a light level sensor.
 The aim of the program is to keep the backlight as low as possible while maintaining user comfort.
 Since what is considered comfortable to use is user dependant, there will be a method to adjust the response
 curve of the script, right now it's linear (y=ax+b) where y is backlight level x is camera light level, a is 1/2.5 and b can be adjusted by editing the script.
-The script is intended to run only when there are no external monitors attached and the computer is not locked (This feature currently only runs on Linux). 
-
+The script will automatically detect if an external monitor is connected or if the screen is off after a long time being idle and it will not run. This feature is available only on the Linux version as of now.
 # DISCLAIMER
 
 The project is still in it's very early stages,
