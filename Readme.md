@@ -97,7 +97,7 @@ Delete the install directory that you created
 ```bash
 rm -r ~/.AutoBacklight
 ```
-replace ~/ with your install path, if you chose differently 
+replace "~/.AutoBacklight" with your install path, if you chose differently 
 
 ## Windows
 
