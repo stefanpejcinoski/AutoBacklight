@@ -9,8 +9,8 @@ The script is intended to run only when there are no external monitors attached 
 
 # DISCLAIMER
 
-The project is still in it's very early stages, this is literally the first working version.
-There is no automated installation, it's untested on Windows and works on Linux but only on 
+The project is still in it's very early stages,
+there is no automated installation. It's untested on Windows and works on Linux but only on 
 distributions that have the GNOME desktop enviroment, since it relies on GNOME DBus calls 
 to read and set the backlight level. 
 
@@ -22,22 +22,40 @@ they don't have a backlight, no power will be saved by keeping it low.
 
 # Installation
 
+The script was made on a system running Python 3.7, if you don't have it already i recommend that you install atleast Python 3.7 or above.
+
 The script uses OpenCV to capture images from the webcam and Numpy to process the data, so you need to have them installed 
 
-Run the following commands in Terminal/Command Line
+Run the following commands in Terminal/Command Line after you've installed Python
 
 ```bash
 pip install python-opencv
 pip install numpy
 ```
+Note that in order for these to work you need to have Python added to your path, most installation guides have this covered already.
 
 ## Linux
 
 Clone the repository on your system 
-
 ```bash
 git clone https://github.com/stefanpejcinoski/automaticBacklight
 ```
+
+Make an install directory to keep the script and stop and config (in the future) files
+```bash
+mkdir ~/.AutoBrightness
+```
+Note that the directory you choose is completely up to you, there is no need to put it in the home folder specifically or even to place it in a subdirectory, wherever you want is fine.
+
+You can choose to not use a hidden directory (don't place the '.' in front of the folder name), but that way it's easier to accidentally delete or modify something and break the install.
+
+The Linux script is located in the "background-script-linux" directory 
+
+Move the script to the new install directory 
+```bash
+cp autoBacklight.py ~/.AutoBacklight/autoBacklight.py
+```
+
 Add a cron job to run the script every 2 minutes (you can play around with the time interval if you wish)
 
 open your cron file for editing (i prefer nano as an editor, but you can use vim if you want)
@@ -51,9 +69,10 @@ Add this line to the end of your cron file, replace path-to-script with the path
 
 
  
- ```
+```
 */2 * * * * /usr/bin/python /path-to-script/autoBacklight.py
 ```
+
 ## Windows
 
 Use the Windows task scheduler to create an automated task with a frequency that you choose (i recommend 2 minutes),  to run the python interpreter with this script as an argument. I currently do not have a machine with Windows to install and test the script on to, but you can find instructions on how to use the task scheduler online.
