@@ -75,7 +75,11 @@ Add this line to the end of your cron file, replace path-to-script with the path
 
 ## Windows
 
+Make an installation directory (anywhere is fine) and copy the script located in "background-script-windows-untested" to it.
+
 Use the Windows task scheduler to create an automated task with a frequency that you choose (I recommend 2 minutes),  to run the python interpreter with this script as an argument. I currently do not have a machine with Windows to install and test the script on to, but you can find instructions on how to use the task scheduler online.
+
+The script is untested on Windows, it may run fine or it may not run at all. For now it lacks external monitor and sleep detection.
 
 # Usage
 
