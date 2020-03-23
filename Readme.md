@@ -14,11 +14,7 @@ there is no automated installation, no user configurable parameters and no GUI. 
 distributions that have the GNOME desktop enviroment, since it relies on GNOME DBus calls 
 to read and set the backlight level. 
 
-Currently it is envisioned to work only on laptops with LCD panels since those have a backlight 
-and keeping it as low as possible will increase battery life. 
-Support for OLED panels might be something that will be considered in the future, although since
-they don't have a backlight, no power will be saved by keeping it low.
-
+This version of the script can work both with LCD and OLED diplay laptops, although only LCDs will see any sort of difference in power consumption, since they have an actual backlight.
 
 # Installation
 
