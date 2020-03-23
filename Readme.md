@@ -6,6 +6,7 @@ The aim of the program is to keep the backlight as low as possible while maintai
 Since what is considered comfortable to use is user dependant, there will be a method to adjust the response
 curve of the script, right now it's linear (y=ax+b) where y is backlight level x is camera light level, a is 1/2.5 and b can be adjusted by editing the script.
 The script will automatically detect if an external monitor is connected or if the screen is off after a long time being idle and it will not run. This feature is available only on the Linux version as of now.
+
 # DISCLAIMER
 
 The project is still in it's very early stages,
@@ -64,15 +65,12 @@ export VISUAL=nano
 crontab -e
 ```
 
-Add this line to the end of your cron file, replace path-to-script with the path to the autoBacklight script
+Add this line to the end of your cron file, if you didn't place the script as shown above, replace "~/.AutoBacklight/autoBacklight.py" with your install location.
 
-To exit nano, save the file with Ctrl+O and exit with Ctrl+X. To exit without saving use Ctrl+X and press N when asked to save;
-
-
- 
 ```
-*/2 * * * * /usr/bin/python /path-to-script/autoBacklight.py
+*/2 * * * * /usr/bin/python ~/.AutoBacklight/autoBacklight.py >> /dev/null
 ```
+To exit nano, save the file with Ctrl+O and exit with Ctrl+X. To exit without saving use Ctrl+X and press N when asked to save
 
 ## Windows
 
