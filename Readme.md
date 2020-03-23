@@ -22,7 +22,7 @@ they don't have a backlight, no power will be saved by keeping it low.
 
 # Installation
 
-The script was made on a system running Python 3.7, if you don't have it already i recommend that you install atleast Python 3.7 or above.
+The script was made on a system running Python 3.7, if you don't have it already I recommend that you install Python 3.7 or above.
 
 The script uses OpenCV to capture images from the webcam and Numpy to process the data, so you need to have them installed 
 
@@ -58,7 +58,7 @@ cp autoBacklight.py ~/.AutoBacklight/autoBacklight.py
 
 Add a cron job to run the script every 2 minutes (you can play around with the time interval if you wish)
 
-open your cron file for editing (i prefer nano as an editor, but you can use vim if you want)
+open your cron file for editing (I prefer nano as an editor, but you can use vim if you want)
 
 ```bash
 export VISUAL=nano
@@ -75,7 +75,7 @@ Add this line to the end of your cron file, replace path-to-script with the path
 
 ## Windows
 
-Use the Windows task scheduler to create an automated task with a frequency that you choose (i recommend 2 minutes),  to run the python interpreter with this script as an argument. I currently do not have a machine with Windows to install and test the script on to, but you can find instructions on how to use the task scheduler online.
+Use the Windows task scheduler to create an automated task with a frequency that you choose (I recommend 2 minutes),  to run the python interpreter with this script as an argument. I currently do not have a machine with Windows to install and test the script on to, but you can find instructions on how to use the task scheduler online.
 
 # Usage
 
