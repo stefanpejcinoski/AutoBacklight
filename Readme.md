@@ -24,9 +24,9 @@ they don't have a backlight, no power will be saved by keeping it low.
 
 The script was made on a system running Python 3.7, if you don't have it already I recommend that you install Python 3.7 or above.
 
-The script uses OpenCV to capture images from the webcam and Numpy to process the data, so you need to have them installed 
+The script uses OpenCV to capture images from the webcam and Numpy to process the data, so you need to have them installed. 
 
-Run the following commands in Terminal/Command Line after you've installed Python
+Run the following commands in Terminal/Command Line after you've installed Python:
 
 ```bash
 pip install python-opencv
@@ -36,13 +36,13 @@ Note that in order for these to work you need to have Python added to your path,
 
 ## Linux
 
-Clone the repository on your system 
+Clone the repository on your system: 
 
 ```bash
 git clone https://github.com/stefanpejcinoski/automaticBacklight
 ```
 
-Make an install directory to keep the script and stop and config (in the future) files
+Make an install directory to keep the script and stop and config (in the future) files:
 
 ```bash
 mkdir ~/.AutoBrightness
@@ -51,17 +51,15 @@ Note that the directory you choose is completely up to you, there is no need to 
 
 You can choose to not use a hidden directory (don't place the '.' in front of the folder name), but that way it's easier to accidentally delete or modify something and break the install.
 
-The Linux script is located in the "background-script-linux" directory 
-
-Move the script to the new install directory 
+The Linux script is located in the "background-script-linux" directory. 
+Move the script to the new install directory: 
 
 ```bash
 cp autoBacklight.py ~/.AutoBacklight/autoBacklight.py
 ```
 
-Add a cron job to run the script every 2 minutes (you can play around with the time interval if you wish)
-
-open your cron file for editing (I prefer nano as an editor, but you can use vim if you want)
+Add a cron job to run the script every 2 minutes (you can play around with the time interval if you wish).
+open your cron file for editing (I prefer nano as an editor, but you can use vim if you want):
 
 ```bash
 export VISUAL=nano
@@ -73,12 +71,12 @@ Add this line to the end of your cron file, if you didn't place the script as sh
 ```
 */2 * * * * /usr/bin/python ~/.AutoBacklight/autoBacklight.py >> /dev/null
 ```
-To exit nano, save the file with Ctrl+O and exit with Ctrl+X. To exit without saving use Ctrl+X and press N when asked to save
+To exit nano, save the file with Ctrl+O and exit with Ctrl+X. To exit without saving use Ctrl+X and press N when asked to save.
 
 ## Windows
 
 I do not recommend installing the Windows script since it's untested and might not even work.
-If you want to test it, it's better to just run it manually from the command line
+If you want to test it, it's better to just run it manually from the command line:
 
 ```
 python \path-to-script\autoBacklight.py
@@ -97,25 +95,26 @@ The script is untested on Windows, it may run fine or it may not run at all. For
 # Uninstallation
 ## Linux
 
-Remove the cron job you created
+Remove the cron job you created:
+
 ```bash
 export VISUAL=nano
 crontab -e
 ```
 
-Find and remove the line you added during installation and save the file with Ctrl+O, and exit with Ctrl+X (if you chose to use nano)
+Find and remove the line you added during installation and save the file with Ctrl+O, and exit with Ctrl+X (if you chose to use nano).
 
-Delete the install directory that you created
+Delete the install directory that you created:
+
 ```bash
 rm -r ~/.AutoBacklight
 ```
-replace "~/.AutoBacklight" with your install path, if you chose differently 
+replace "~/.AutoBacklight" with your install path, if you chose differently. 
 
 ## Windows
 
-Remove the task you added to the Task Scheduler 
-
-Delete the install directory that you created
+Remove the task you added to the Task Scheduler and 
+delete the install directory that you created.
 
 # Usage
 
