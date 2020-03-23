@@ -37,11 +37,13 @@ Note that in order for these to work you need to have Python added to your path,
 ## Linux
 
 Clone the repository on your system 
+
 ```bash
 git clone https://github.com/stefanpejcinoski/automaticBacklight
 ```
 
 Make an install directory to keep the script and stop and config (in the future) files
+
 ```bash
 mkdir ~/.AutoBrightness
 ```
@@ -52,6 +54,7 @@ You can choose to not use a hidden directory (don't place the '.' in front of th
 The Linux script is located in the "background-script-linux" directory 
 
 Move the script to the new install directory 
+
 ```bash
 cp autoBacklight.py ~/.AutoBacklight/autoBacklight.py
 ```
@@ -73,6 +76,17 @@ Add this line to the end of your cron file, if you didn't place the script as sh
 To exit nano, save the file with Ctrl+O and exit with Ctrl+X. To exit without saving use Ctrl+X and press N when asked to save
 
 ## Windows
+
+I do not recommend installing the Windows script since it's untested and might not even work.
+If you want to test it, it's better to just run it manually from the command line
+
+```
+python \path-to-script\autoBacklight.py
+```
+
+Note that in order for these to work you need to have Python installed and added to your path, there are a plenty of guides on how to do this.
+
+If you still wish to install, do as follows:
 
 Make an installation directory (anywhere is fine) and copy the script located in "background-script-windows-untested" to it.
 
