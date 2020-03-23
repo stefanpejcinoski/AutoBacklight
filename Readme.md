@@ -82,7 +82,7 @@ Use the Windows task scheduler to create an automated task with a frequency that
 
 The script is untested on Windows, it may run fine or it may not run at all. For now it lacks external monitor and sleep detection.
 
-# Unistallation
+# Uninstallation
 ##Linux
 
 Remove the cron job you created
