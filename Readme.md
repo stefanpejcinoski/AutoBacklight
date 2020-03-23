@@ -120,7 +120,8 @@ delete the install directory that you created.
 
 There is no user intervention needed for this script, it runs in the backround with the interval
 that you set in the cron file or task scheduler
-If you wish to stop the script from running temporarily, create a file called stop (no extension) in the same directory as the script.
+If you wish to stop the script from running temporarily, create a file called stop (no extension) in the same directory as the script. To continue the script just delete this file.
+
 # Contributing
 
 Pull requests are welcome.
