@@ -1,13 +1,3 @@
-/*
- ============================================================================
- Name        : autobacklightbackend.c
- Author      : 
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
- */
-
 #include <string.h>
 #include <errno.h>
 #include <math.h>
@@ -20,9 +10,36 @@
 #include <sys/ioctl.h>
 #include <sys/mman.h>
 #include <unistd.h>
+#include <stdbool.h>
+
 
 uint8_t *buffer;
 
+bool checkHDMI (char *hdmi)
+{
+int fp;
+fp=open(hdmi, O_RDWR);
+if (fp==-1)
+{
+    perror("cannot read HDMI status");
+    exit(1);
+}
+char *str = (char*)calloc(15, sizeof(char));
+if(read(fp, str, 15)==0)
+{
+perror("Nothing read from HDMI");
+exit(1);
+}
+close(fp);
+if(strcmp(str, "connected\n")==0)
+{
+return true;
+}
+else
+{
+    return false;
+}
+}
 int strtoi (char *str){
     int num=0;
     int len = (int)(strchr(str, '\n')-str);
@@ -67,37 +84,19 @@ char *itostr(int i , int *h)
   
     return str;
 }
-int setup_format(int fd)
-{
-
-        struct v4l2_format fmt = {0};
-        fmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-        fmt.fmt.pix.width = 176;
-        fmt.fmt.pix.height = 144;
-        //fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_BGR24;
-        //fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_GREY;
-        fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_MJPEG;
-        fmt.fmt.pix.field = V4L2_FIELD_NONE;
-
-        if (-1 == xioctl(fd, VIDIOC_S_FMT, &fmt))
-        {
-            perror("Setting Pixel Format");
-            return 1;
-        }
-        return 0;
-}
-
 int init_mmap(int fd)
 {
+    
     struct v4l2_requestbuffers req = {0};
+   
     req.count = 1;
     req.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
     req.memory = V4L2_MEMORY_MMAP;
-
+    
     if (-1 == xioctl(fd, VIDIOC_REQBUFS, &req))
     {
         perror("Requesting Buffer");
-        return 1;
+        exit(1);
     }
 
     struct v4l2_buffer buf = {0};
@@ -107,13 +106,13 @@ int init_mmap(int fd)
     if(-1 == xioctl(fd, VIDIOC_QUERYBUF, &buf))
     {
         perror("Querying Buffer");
-        return 1;
+        exit(1);
     }
 
     buffer = mmap (NULL, buf.length, PROT_READ | PROT_WRITE, MAP_SHARED, fd, buf.m.offset);
 
 
-    return 0;
+    return buf.length;
 }
 
 int capture_image(int fd)
@@ -125,13 +124,13 @@ int capture_image(int fd)
     if(-1 == xioctl(fd, VIDIOC_QBUF, &buf))
     {
         perror("Query Buffer");
-        return 1;
+        exit(1);
     }
 
     if(-1 == xioctl(fd, VIDIOC_STREAMON, &buf.type))
     {
         perror("Start Capture");
-        return 1;
+        exit(1);
     }
 
     fd_set fds;
@@ -143,26 +142,87 @@ int capture_image(int fd)
     if(-1 == r)
     {
         perror("Waiting for Frame");
-        return 1;
+        exit(1);
     }
 
     if(-1 == xioctl(fd, VIDIOC_DQBUF, &buf))
     {
         perror("Retrieving Frame");
-        return 1;
+        exit(1);
     }
 
     if(-1 == xioctl(fd, VIDIOC_STREAMOFF, &buf.type))
     {
-        perror("Start Capture");
-        return 1;
+        perror("Stop Capture");
+        exit(1);
     }
 
     return 0;
 }
+int capture_global_buffer(){
+     
+     int fd;
+        fd = open("/dev/video0", O_RDWR);
+        if (fd == -1)
+        {
+                perror("Opening video device");
+                exit(1);
+        }
 
+
+        int len = init_mmap(fd);
+        int i;
+       if(capture_image(fd))
+	{
+	perror("Capturing image");
+	exit(1);
+	}	
+
+        close(fd);
+        return len;
+}
+int lightLevel(int len)
+{
+    int i;
+    	
+        long sum=0;
+        for (i=0 ; i<len ; i++){
+        	sum+=buffer[i];
+        }
+
+        sum/=len;
+        int light_level = sum-80;
+        if (light_level<=0)
+        	light_level=1;
+    return light_level;
+}
+int currentLevel(int fp, int light_level, char *loc)
+{
+
+char *buff = (char*)calloc(6, sizeof(char));
+if(read(fp, buff, 6)<=0){
+perror("Error reading file");
+exit(1);
+}
+int currLevel=0;
+int i=0;
+currLevel=strtoi(buff);
+
+  free(buff);      
+char *bf;
+        int incr=0;
+        if(light_level>currLevel/960){
+        	incr=1;
+        }
+        else{
+        	incr=-1;
+        }
+        int j;
+  int multi=currLevel/960;
+}
 int main(int argc, char *argv[])
 {
+
 if(argc==1){
     perror("No arguments provided");
     return 1;
@@ -173,92 +233,45 @@ if (geteuid()!=0)
 perror("No root access");
 return 0;
 }
-        int fd;
-
-        fd = open("/dev/video0", O_RDWR);
-        if (fd == -1)
-        {
-                perror("Opening video device");
-                return 1;
-        }
-
-
-        if(init_mmap(fd))
-            return 1;
-        int i;
-       if(capture_image(fd))
-	{
-	perror("Capturing image");
-	return 1;
-	}	
-
-        close(fd);
-	
-        long sum=0;
-        for (i=0 ; i<144*176 ; i++){
-        	sum+=buffer[i];
-        }
-
-        sum/=(144*176);
-        int light_level = sum-80;
-        if (light_level<0)
-        	light_level=0;
-
+   if (checkHDMI(argv[2])){
+       perror("Ext monitor plugged in");
+       exit(0);
+   }    
+int len = capture_global_buffer();
+int light_level=lightLevel(len);
 int fp;
-        fp = open(argv[1], O_RDWR);
+fp = open(argv[1], O_RDWR);
 if(fp == -1)
 {
 perror("Error opening brightness file");
 return 1;
 }
+int curLevel = currentLevel(fp, light_level, argv[1]);
+int incr=0;
 
-char *buff = (char*)calloc(6, sizeof(char));
-if(read(fp, buff, 6)<=0){
-perror("Error reading file");
-return 1;
+if (curLevel<light_level){
+incr=1;
+}
+else
+{
+incr=-1;
 }
 
-
-int currLevel=0;
-i=0;
-currLevel=strtoi(buff);
-
-  free(buff);      
 char *bf;
- //printf("%i, %c", currLevel, 'c');
-     fflush(stdout);
-        
-        int incr=0;
-        if(light_level>currLevel/960){
-        	incr=1;
-        }
-        else{
-        	incr=-1;
-        }
-        int j;
-  int multi=currLevel/960;
-      // printf("%i\n", multi);
-     //  printf("%i\n", light_level);
-       fflush(stdout);
-        while(multi!=light_level)
+int *j;
+        while(curLevel!=light_level)
         {
             
             lseek(fp, 0, SEEK_SET);
             
-        	multi+=incr;
-            fflush(stdout);
-		    bf=itostr(multi*960, &j);
+        	curLevel+=incr;
+		    bf=itostr(curLevel*960, j);
             
-		    if(write(fp, bf, j)<j){
+		    if(write(fp, bf, *j)<*j){
                 perror("error writing");
                 return 1;
             }
-          
-            //fflush(fp);
-            
-            
-        	usleep(2000);
-            
+        	usleep(30000);   
         }
         close(fp);
 
