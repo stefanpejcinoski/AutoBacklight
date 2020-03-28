@@ -34,18 +34,20 @@ def change_brightness(value):
 def check_prerequisites():
     if(os.path.isfile(os.path.join(os.getcwd(), "stop"))):
         return False
-    if("On" not in os.popen("xset -q | grep Monitor | cut -d ' ' -f5").read()):
+    if("On" not in os.popen("cat /sys/class/drm/card0/*eDP*/dpms").read()):
         return False
-    if("disconnected" not in os.popen("xrandr --query | grep HDMI-1").read()):
+    if("disconnected" not in os.popen("cat /sys/class/drm/card0/*HDMI*/status").read()):
         return False
     return True
 
 def main():  
-    if(check_prerequisites==False):
-        sys.exit()    
+    
+    if(check_prerequisites()==False):
+        print("ya")
+        sys.exit(0)    
     camera=cv2.VideoCapture(0)
     if(camera.open(0)==False):
-        sys.exit()
+        sys.exit(0)
     ret, frame=camera.read()
     camera.release()
     avg=np.average(frame)
