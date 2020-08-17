@@ -25,7 +25,7 @@ The script uses OpenCV to capture images from the webcam and Numpy to process th
 Run the following commands in Terminal/Command Line after you've installed Python:
 
 ```bash
-pip install python-opencv
+pip install opencv-python
 pip install numpy
 ```
 Note that in order for these to work you need to have Python added to your path, most installation guides have this covered already.
