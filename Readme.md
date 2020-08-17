@@ -35,13 +35,13 @@ Note that in order for these to work you need to have Python added to your path,
 Clone the repository on your system: 
 
 ```bash
-git clone https://github.com/stefanpejcinoski/automaticBacklight
+git clone https://github.com/stefanpejcinoski/AutoBacklight
 ```
 
 Make an install directory to keep the script and stop and config (in the future) files:
 
 ```bash
-mkdir ~/.AutoBrightness
+mkdir ~/.AutoBacklight
 ```
 Note that the directory you choose is completely up to you, there is no need to put it in the home folder specifically or even to place it in a subdirectory, wherever you want is fine.
 
