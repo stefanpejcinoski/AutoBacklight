@@ -22,6 +22,7 @@ webcam_location_constant: int = 0
 # decrease to speed up the transition or increase to slow it down
 loop_sleep_constant: float = 0.025
 
+
 def change_brightness(value):
     current_brightness_value_returned = os.popen(
         'gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power '
