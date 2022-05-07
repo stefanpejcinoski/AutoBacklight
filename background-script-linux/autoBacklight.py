@@ -4,19 +4,20 @@ import time
 import numpy as np
 
 # Constant used to calibrate the brightness calculation,
-# set to negative value if brightness is too low or positive if too high
-brightness_calibration_constant: float = 0
+# reduce if brightness is too low or increase if too high
+brightness_calibration_constant: float = -2.5
 
 # Value by which the brightness is being incremented during multiple iterations, to avoid a
 # sudden bright flash of the screen or a sudden darkening, raise if transition from dark to bright
 # or bright to dark is too slow or lower if it is too fast
-brightness_increment: float = 1.0
+brightness_increment: int = 1
 
 # Constant used in the calculation of the brightness, testing showed this should not be modified
 brightness_multiplier: float = 1 / 2.5
 
 # Constant used to define the camera location to the script
 webcam_location_constant: int = 0
+
 
 def change_brightness(value):
     current_brightness_value_returned = os.popen(
