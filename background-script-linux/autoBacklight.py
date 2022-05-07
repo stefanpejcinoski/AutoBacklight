@@ -18,6 +18,9 @@ brightness_multiplier: float = 1 / 2.5
 # Constant used to define the camera location to the script
 webcam_location_constant: int = 0
 
+# Constant defining the amount of time in seconds the loop will pause between two consecutive changes in brightness
+# decrease to speed up the transition or increase to slow it down
+loop_sleep_constant: float = 0.025
 
 def change_brightness(value):
     current_brightness_value_returned = os.popen(
@@ -37,7 +40,7 @@ def change_brightness(value):
             '--method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness "<int32 '
             + str(
                 current_brightness_value) + '>"')
-        time.sleep(0.025)
+        time.sleep(loop_sleep_constant)
         if current_brightness_value == value:
             break
 
