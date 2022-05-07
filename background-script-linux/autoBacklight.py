@@ -15,6 +15,8 @@ brightness_increment: float = 1.0
 # Constant used in the calculation of the brightness, testing showed this should not be modified
 brightness_multiplier: float = 1 / 2.5
 
+# Constant used to define the camera location to the script
+webcam_location_constant: int = 0
 
 def change_brightness(value):
     current_brightness_value_returned = os.popen(
@@ -53,7 +55,8 @@ def main():
     if not check_prerequisites():
         raise Exception("Prerequisites check failed")
 
-    camera = cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(webcam_location_constant)
+
     if not camera.open(0):
         raise Exception("Can't open camera")
 
