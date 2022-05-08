@@ -59,7 +59,8 @@ Run the script like this
 python /path-to-script/script.py & disown
 ```
 disown will detach the process from the terminal window and you can safely close the window,
-for persistance on boot the script can be added to cron on reboot using `@reboot  /use/bin/python /path-to-script/script.py`
+for persistance on boot the script can be added to cron on reboot using 
+`@reboot  /usr/bin/python /path-to-script/script.py`
 ## Windows
 
 I do not recommend installing the Windows script since it's untested and might not even work.
