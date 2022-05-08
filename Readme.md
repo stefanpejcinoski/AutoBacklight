@@ -27,6 +27,7 @@ Run the following commands in Terminal/Command Line after you've installed Pytho
 ```bash
 pip install opencv-python
 pip install numpy
+pip install schedule
 ```
 Note that in order for these to work you need to have Python added to your path, most installation guides have this covered already.
 
@@ -53,22 +54,12 @@ Move the script to the new install directory:
 ```bash
 cp autoBacklight.py ~/.AutoBacklight/autoBacklight.py
 ```
-
-Add a cron job to run the script every 2 minutes (you can play around with the time interval if you wish).
-open your cron file for editing (I prefer nano as an editor, but you can use vim if you want):
-
+Run the script like this 
 ```bash
-export VISUAL=nano
-crontab -e
+python /path-to-script/script.py & disown
 ```
-
-Add this line to the end of your cron file, if you didn't place the script as shown above, replace "~/.AutoBacklight/autoBacklight.py" with your install location.
-
-```
-*/2 * * * * /usr/bin/python ~/.AutoBacklight/autoBacklight.py >> /dev/null
-```
-To exit nano, save the file with Ctrl+O and exit with Ctrl+X. To exit without saving use Ctrl+X and press N when asked to save.
-
+disown will detach the process from the terminal window and you can safely close the window,
+for persistance on boot the script can be added to cron on reboot using `@reboot  /use/bin/python /path-to-script/script.py`
 ## Windows
 
 I do not recommend installing the Windows script since it's untested and might not even work.
