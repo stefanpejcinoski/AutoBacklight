@@ -51,7 +51,7 @@ def check_prerequisites():
     return True
 
 
-def capture_screenshot_calculate_new_brightness_value(camera):
+def capture_image_calculate_new_brightness_value(camera):
     ret, frame = camera.read()
     camera.release()
     avg = np.average(frame)
@@ -73,7 +73,7 @@ def open_camera_calculate_values_and_call_brightness_change():
         raise Exception("Can't open camera")
 
     current_brightness_value = get_current_brightness()
-    new_value = capture_screenshot_calculate_new_brightness_value(camera)
+    new_value = capture_image_calculate_new_brightness_value(camera)
 
     if current_brightness_value < new_value:
         brightness_increment_multiplier = 1
